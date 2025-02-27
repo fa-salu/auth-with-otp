@@ -1,19 +1,19 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
-import { sendOtp, validateOtp } from "../services/otpServices.js";
+import MoblieUser from "../models/MobileUser.js";
+import { sendOtp, validateOtp } from "../services/phoneOtpServices.js";
 
 export const sendOtpController = async (req, res) => {
   const { name, password, countryCode, mobileNumber } = req.body;
 
   try {
-    let user = await User.findOne({ mobileNumber });
+    let user = await MoblieUser.findOne({ mobileNumber });
     if (user) {
       return res.status(400).json({ message: "alreay register. Please login" });
     } else {
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      user = new User({
+      user = new MoblieUser({
         name,
         countryCode,
         mobileNumber,
@@ -52,7 +52,7 @@ export const validateOtpController = async (req, res) => {
       response.data.verificationStatus === "VERIFICATION_COMPLETED" &&
       !response.data.errorMessage
     ) {
-      let user = await User.findOne({ mobileNumber });
+      let user = await MoblieUser.findOne({ mobileNumber });
 
       if (!user) {
         return res
@@ -83,7 +83,7 @@ export const validateOtpController = async (req, res) => {
 export const login = async (req, res) => {
   const { mobileNumber, password } = req.body;
   try {
-    const user = await User.findOne({ mobileNumber });
+    const user = await MoblieUser.findOne({ mobileNumber });
     if (!user) {
       return res
         .status(400)

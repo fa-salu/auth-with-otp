@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
+const MobileUserSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     mobileNumber: { type: String, required: true, unique: true },
@@ -11,5 +11,5 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema);
-export default User;
+const MoblieUser = mongoose.model("User", MobileUserSchema);
+export default MoblieUser;

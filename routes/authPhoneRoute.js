@@ -3,7 +3,7 @@ import {
   login,
   sendOtpController,
   validateOtpController,
-} from "../controllers/authController.js";
+} from "../controllers/authPhoneController.js";
 
 const router = express.Router();
 
