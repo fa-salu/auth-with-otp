@@ -2,7 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import otpRoutes from "./routes/authPhoneRoute.js";
+import phoneRoutes from "./routes/authPhoneRoute.js";
+import emailRoutes from "./routes/authEmailRoute.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.error("MongoDB Connect error", err));
 
-app.use("/api/otp", otpRoutes);
+app.use("/api/phone/otp", phoneRoutes);
+app.use("/api/email/otp", emailRoutes);
 
 app.listen(PORT, () => console.log(`server running on port ${PORT}`));

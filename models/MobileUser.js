@@ -11,5 +11,5 @@ const MobileUserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const MoblieUser = mongoose.model("User", MobileUserSchema);
+const MoblieUser = mongoose.model("MoblieUser", MobileUserSchema);
 export default MoblieUser;
